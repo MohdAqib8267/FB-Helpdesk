@@ -40,7 +40,16 @@ const Chat = () => {
         );
 
         // Handle the response data as needed
-        // console.log(response.data);
+        console.log(response.data);
+        //send new msg to DB
+         await axios.post(`http://localhost:8000/api/user/message`, {
+            id: response?.data?.id,
+            created_at: response?.data?.created_time,
+            from: response?.data?.from,
+            to: response?.data?.to,
+            message: response?.data?.message,
+          });
+
         setLastMsg(response.data.message);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -124,19 +133,22 @@ const Chat = () => {
               }
             );
 
+
             // Handle the response data as needed
             return response.data;
           })
         );
 
         setMsgs(arr.reverse());
-        
+       
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
     sendMsg();
   }, [msgIdarr, mymsg]);
+  
+ 
   useEffect(() => {
     const getProfile = async () => {
       try {
@@ -158,7 +170,7 @@ const Chat = () => {
 
     getProfile();
   }, [profile]);
- 
+//  console.log(msgs)
   const submitMsg = async () => {
     
     const pageAccessToken = import.meta.env.VITE_PAGE_ACCESS_TOKEN;
