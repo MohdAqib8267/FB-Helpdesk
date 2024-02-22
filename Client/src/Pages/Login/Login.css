@@ -20,12 +20,15 @@
     display: flex;
     height: fit-content;
     align-items: center;
+    color: black;
 }
 .Auth input{
     border: 1px solid gray;
     border-radius: 3px;
     width: 100%;
     padding: 5px;
+    background: transparent;
+    color: black;
 }
 .Auth label{
     display: flex;

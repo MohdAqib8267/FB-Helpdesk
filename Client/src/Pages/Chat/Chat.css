@@ -2,6 +2,7 @@
     display: flex;
     width: 100%;
     height: 100vh;
+    color: black;
 }
 .first{
     display: flex;
@@ -36,7 +37,7 @@
 .first-right-nav{
     display: flex;
     justify-content: space-between;
-    width: 100%;
+   
     background: white;
     padding: 10px;
     border: 1px solid #b8b6b6;
@@ -120,7 +121,7 @@ hr{
 .second-right-nav{
     display: flex;
     justify-content: space-between;
-    width: 100%;
+   
     background: white;
     padding: 10px;
     border: 1px solid #b8b6b6;
@@ -164,7 +165,9 @@ hr{
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
+    scrollbar-width: none !important;
 }
+
 .msgs-container>.chat-container>.left{
     margin-bottom: -2rem;
 }
@@ -183,6 +186,8 @@ hr{
     width: 90%;
     padding: 5px;
     border-radius: 5px;
+    color: black;
+   
 }
 
 

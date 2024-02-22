@@ -8,7 +8,7 @@ dotenv.config();
 
 const app = express();
 
-// middlewares
+// middlewares  
 app.use(express.json()); // parsed json data
 app.use(cookieParser()); //extract cookies
 app.use(cors()); //handle cors problem across different domains

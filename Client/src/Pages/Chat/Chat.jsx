@@ -20,10 +20,10 @@ const Chat = () => {
   const [profile, setProfile] = useState("");
   const [mymsg, setMymsg] = useState("");
   const [profileInfo, setProfileInfo] = useState("");
-  const [chatphoto, setChatphoto] = useState(false);
+ 
 
   const pageId = useParams().pageId;
-  // console.log(pageId);
+ 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const Chat = () => {
         );
 
         // Handle the response data as needed
-        console.log(response.data?.conversations);
+        // console.log(response.data?.conversations);
         setUserList(response?.data?.conversations);
 
         response?.data?.conversations?.data?.forEach((item) => {
@@ -76,7 +76,7 @@ const Chat = () => {
         getLastMsg(
           response?.data?.conversations?.data[0]?.messages?.data[0]?.id
         );
-        // console.log(response?.data?.conversations?.data[0]?.messages?.data[0]?.id);
+       
       } catch (error) {
         // Handle errors
         console.error("Error fetching data:", error);
@@ -86,7 +86,7 @@ const Chat = () => {
     fetchData();
   }, [mymsg, lastMsgId]);
 
-  // console.log(profile);
+  
 
   function getTimeAgo(updatedTime) {
     const currentTimeDate = Date.now();
@@ -108,7 +108,7 @@ const Chat = () => {
       return "Just now";
     }
   }
-  // console.log(msgIdarr)
+ 
   useEffect(() => {
     const sendMsg = async () => {
       try {
@@ -130,7 +130,7 @@ const Chat = () => {
         );
 
         setMsgs(arr.reverse());
-        // console.log(arr.reverse());
+        
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -149,7 +149,7 @@ const Chat = () => {
             },
           }
         );
-        console.log(response);
+        
         setProfileInfo(response?.data);
       } catch (error) {
         console.log(error);
@@ -158,10 +158,9 @@ const Chat = () => {
 
     getProfile();
   }, [profile]);
-  // console.log(msgs);
-  // console.log(import.meta.env.VITE_PAGE_ACCESS_TOKEN);
+ 
   const submitMsg = async () => {
-    // console.log(mymsg);
+    
     const pageAccessToken = import.meta.env.VITE_PAGE_ACCESS_TOKEN;
     const recipientId = "7002388243131749";
     const pageId = import.meta.env.VITE_PAGE_ID;
@@ -179,7 +178,7 @@ const Chat = () => {
     };
     try {
       const response = await axios.post(apiUrl, messageBody);
-      console.log(response.data);
+      // console.log(response.data);
 
       if (response.data) {
         setMymsg("");

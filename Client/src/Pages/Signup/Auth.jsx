@@ -14,7 +14,7 @@ const Auth = () => {
     e.preventDefault();
     // onSubmit({ username, password });
     try {
-      const response = await axios.post(`http://localhost:8000/api/user/signup`,{
+      const response = await axios.post(`https://fb-helpdesk-pearl.vercel.app/api/user/signup`,{
         
           name:username,
           email,
@@ -23,9 +23,10 @@ const Auth = () => {
       })
       const { token, newUser } = response.data;
       console.log(token,newUser);
+      navigate('/fb');
     //  console.log(response.data.message)
     localStorage.setItem("token",token);
-      navigate('/fb');
+     
     } catch (error) {
       console.log(error);
       if(error.response.status == 401){

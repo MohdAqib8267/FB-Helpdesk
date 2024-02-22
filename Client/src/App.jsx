@@ -17,24 +17,6 @@ function App() {
   
   const isLoggedIn = token;
 
-  // useEffect(() => {
-  //   const url=window.location.href;
-  // const urlArr=url.split('/');
-  // console.log(urlArr)
-  // const check = urlArr.includes('login') || urlArr.includes('signup');
-  //   if(!token && url.includes('signup')){
-  //     navigate('/signup');
-  //   }
-  //   else if (!token || urlArr.includes('/') ) {
-  //     // Redirect to the login page if the user is not authenticated
-  //     navigate('/login');
-  //   }else if(token && check){
-  //     navigate('/chat');
-  //   } else{
-  //     navigate('/fb');
-  //   }
-
-  // }, [token, navigate]);
 
   return (
     <div className="App">
@@ -56,6 +38,7 @@ function App() {
         
 
       </Routes>
+     
     </div>
   )
 }
