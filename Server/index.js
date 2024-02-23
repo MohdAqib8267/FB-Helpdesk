@@ -16,7 +16,7 @@ app.use(cors()); //handle cors problem across different domains
 
 //routes
 app.use('/api/user',userRoute);
-app.use('/api/user',messageRoute);
+// app.use('/api/user',messageRoute);
 
 app.listen(process.env.PORT,()=>{
     console.log(`server is running at Port ${process.env.PORT}`);

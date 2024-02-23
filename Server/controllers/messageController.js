@@ -4,50 +4,45 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const messagesApi=asyncHandler(async(req,res)=>{
-    const {from,to,id,message,created_at}=req.body;
-    console.log(req.body);
-    
+    const {from,to,id,message,created_time}=req.body;
+    // console.log(req.body);
+
         try {
-            //first check message is present in db or not
-            const existInDB=await prisma.message.findFirst({
-                where:{
-                    msg_id: id,
-                }
-            })
-            //if present, dont add in DB
-            if(existInDB){
-                return res.json({message:'message is Already present in DB'});
-            }
+            
             //else enter in DB
             const addInDB = await prisma.message.create({
-                data: {
-                  msg_id: id,
-                  from: {
+              data: {
+                id: id,
+                from: {
+                  
                     name: from.name,
                     email: from.email,
                     id: from.id,
-                  },
-                  to: Array.isArray(to)
-                    ? {
-                        connect: to.map((recipient) => ({
-                          name: recipient.name,
-                          email: recipient.email,
-                          id: recipient.id,
-                        })),
-                      }
-                    : {
-                        name: to.name,
-                        email: to.email,
-                        id: to.id,
-                      },
-                  message: message,
-                  created_at: created_at,
+                  
                 },
-              });
-              
-            res.json({success:"true",addInDB});
+                message: message,
+                created_time: created_time, 
+              },
+            });
+            const addinToData = await Promise.all(
+              Array.isArray(to?.data) && to?.data?.map(async(item)=>{
+                const {id,name,email}=item;
+
+                const createInToTable = await prisma.toJson.create({
+                  data:{
+                    id,
+                    name,
+                    email
+                  }
+                })
+                return createInToTable;
+              })
+            )
+
+            
+            res.json({success:"true",addInDB,addinToData});
         } catch (error) {
             res.json("server error");
-            console.log(error);
+            console.log(error); 
         }
 })

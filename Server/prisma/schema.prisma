@@ -17,26 +17,20 @@ model User {
 }
 
 model Message {
-  id String    @id @default(auto()) @map("_id") @db.ObjectId
-  msg_id String
-  from FromJson @relation(fields: [fromId], references: [id])
+  
+  id String  @id @map("_id")
+  from Json
   to ToJson[]
   message String
-  created_at String
-  fromId String
+  created_time String
+  
 }
 
-model FromJson {
-  id String    @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  email String
-  messages Message[]
-}
 
 model ToJson {
-  id String    @id @default(auto()) @map("_id") @db.ObjectId
+  id  String    @id @map("_id")
   name String
   email String
-  message Message? @relation(fields: [messageId], references: [id])
-  messageId  String?
+  message Message? @relation(fields: [messageId],references: [id])
+  messageId  String? @unique
 }
